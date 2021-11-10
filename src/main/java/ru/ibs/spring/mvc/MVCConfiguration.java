@@ -9,7 +9,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import ru.ibs.spring.mvc.service.DieselEngineImpl;
-import ru.ibs.spring.mvc.service.Engine;
 import ru.ibs.spring.mvc.service.PetrolEngineImpl;
 
 @Configuration
@@ -31,17 +30,12 @@ public class MVCConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public Engine petrolEngine() {
+    public PetrolEngineImpl petrolEngine() {
         return new PetrolEngineImpl();
     }
 
     @Bean
-    public Engine dieselEngine() {
+    public DieselEngineImpl dieselEngine() {
         return new DieselEngineImpl();
-    }
-
-    @Bean
-    public EngineStorage engineMapBean() {
-        return new EngineStorage();
     }
 }

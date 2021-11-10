@@ -1,5 +1,7 @@
 package ru.ibs.spring.mvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import ru.ibs.spring.mvc.service.DieselEngineImpl;
 import ru.ibs.spring.mvc.service.Engine;
@@ -18,7 +20,7 @@ public class EngineStorage {
         engineMap.put("diesel", new DieselEngineImpl());
     }
 
-    public Engine getEngine(String type) throws Exception {
+    public static Engine getEngine(String type) throws Exception {
         Engine engine = engineMap.get(type);
         if (engineMap.containsKey(type)) {
             return engine;

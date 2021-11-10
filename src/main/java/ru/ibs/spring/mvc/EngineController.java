@@ -1,6 +1,5 @@
 package ru.ibs.spring.mvc;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/")
+
 public class EngineController {
 
     @GetMapping("check")
@@ -19,8 +19,8 @@ public class EngineController {
 
     @PostMapping("check")
     @FuelExceptionHandle
-    public String postAdd(@RequestParam("type") String type, Model model, EngineStorage engineStorage) throws Exception {
-        model.addAttribute("addedText", engineStorage.getEngine(type).powerUp());
+    public String postAdd(@RequestParam("type") String type, Model model) throws Exception {
+        model.addAttribute("addedText", EngineStorage.getEngine(type).powerUp());
         return "show";
     }
 }
