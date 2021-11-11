@@ -1,7 +1,6 @@
 package ru.ibs.spring.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import ru.ibs.spring.mvc.service.DieselEngineImpl;
 import ru.ibs.spring.mvc.service.Engine;
@@ -12,12 +11,17 @@ import java.util.Map;
 
 @Component
 public class EngineStorage {
+    PetrolEngineImpl petrolEngine;
+    DieselEngineImpl dieselEngine;
     private static Map<String, Engine> engineMap;
 
-    public EngineStorage() {
+    @Autowired
+    public EngineStorage(PetrolEngineImpl petrolEngine, DieselEngineImpl dieselEngine) {
+        this.petrolEngine = petrolEngine;
+        this.dieselEngine = dieselEngine;
         engineMap = new HashMap<>();
-        engineMap.put("petrol", new PetrolEngineImpl());
-        engineMap.put("diesel", new DieselEngineImpl());
+        engineMap.put("petrol", petrolEngine);
+        engineMap.put("diesel", dieselEngine);
     }
 
     public static Engine getEngine(String type) throws Exception {
